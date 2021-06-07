@@ -22,14 +22,7 @@
 
 <web-app>
   <!-- General description of your web application -->
-  <welcome-file-list>  
-   <welcome-file>index.html</welcome-file>  
-  </welcome-file-list>
   <display-name>CalendarYou</display-name>
-  <filter-mapping>
-  	<filter-name>Filter</filter-name>
-  	<url-pattern>/*</url-pattern>
-  </filter-mapping>
   <servlet>
     <servlet-name>Registro</servlet-name>
     <display-name>Registro</display-name>
