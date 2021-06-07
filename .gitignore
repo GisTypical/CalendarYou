@@ -5,11 +5,3 @@
 # Maven ignore
 /target/
 pom.xml.tag
-
-# Server build ignore
-/src/main/webapp/static
-/src/main/webapp/*.json
-/src/main/webapp/*.html
-/src/main/webapp/*.ico
-/src/main/webapp/*.png
-/src/main/webapp/*.txt
