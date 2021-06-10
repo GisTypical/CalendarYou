@@ -1,5 +1,8 @@
 package helpers;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,13 +13,15 @@ public class DB {
 
     private static DB instance;
     private Connection connection;
-    private String dbName = "calendaryou";
-    private String url = "jdbc:postgresql://localhost:5432/" + this.dbName;
-    private String username = "postgres";
-    private String password = "123";
+    private static PropertiesReader pReader = new PropertiesReader();
 
     private DB() throws SQLException {
-        this.connection = DriverManager.getConnection(url, username, password);
+        try {
+            String url = pReader.readValue("JDBC_DATABASE_URL");
+            this.connection = DriverManager.getConnection(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Connection getConnection() {

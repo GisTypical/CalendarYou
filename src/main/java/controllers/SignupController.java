@@ -23,7 +23,7 @@ public class SignupController {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        DB.getInstance().preparedStatement(pReader.readValue("signup_query"), values);
+        DB.getInstance().preparedStatement(pReader.readValue("SIGNUP_QUERY"), values);
         return "\"message\": \"200 OK\"";
     }
 }
