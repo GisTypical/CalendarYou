@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,14 +15,16 @@ public class SignupController {
     private SignupController() {
     }
 
-    public static String signUp(List<String> values) throws SQLException, IOException {
-        Hashing hash = new Hashing();
+    public static String signUp(List<String> values) throws IOException {
+        values.set(values.size() - 2, Hashing.getHash(values.get(values.size() - 2)));
         try {
-            values.set(values.size() - 2, hash.getHash(values.get(values.size() - 2)));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            DB.getInstance().preparedStatement(pReader.readValue("SIGNUP_QUERY"), values);
+        } catch (SQLException e) {
+            if (e.getMessage().contains("already exists")) {
+                return "{\"status\": \"409 Conflict\"}";
+            }
+            return "{\"status\": \"500 Internal Server Error\"}";
         }
-        DB.getInstance().preparedStatement(pReader.readValue("SIGNUP_QUERY"), values);
-        return "\"message\": \"200 OK\"";
+        return "{\"status\": \"200 OK\"}";
     }
 }

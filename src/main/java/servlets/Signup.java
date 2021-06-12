@@ -2,18 +2,17 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controllers.SignupController;
-
-import java.util.ArrayList;
-import java.util.Enumeration;
 
 /**
  * Servlet implementation class Registro
@@ -30,18 +29,17 @@ public class Signup extends HttpServlet {
      */
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         Enumeration<String> enumeration = req.getParameterNames();
-        ArrayList<String> keys = new ArrayList<>();
         ArrayList<String> values = new ArrayList<>();
         while (enumeration.hasMoreElements()) {
-            keys.add(enumeration.nextElement());
-            values.add(req.getParameter(keys.get(keys.size() - 1)));
+            values.add(req.getParameter(enumeration.nextElement()));
         }
+        resp.setContentType("application/json");
         try {
             PrintWriter out = resp.getWriter();
             out.println(SignupController.signUp(values));
-        } catch (IOException | SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
