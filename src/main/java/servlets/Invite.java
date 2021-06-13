@@ -1,5 +1,6 @@
 package servlets;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -9,21 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.LoginController;
+import controllers.PInviteController;
 
 @MultipartConfig()
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/invite")
+public class Invite extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
         try {
             PrintWriter out = resp.getWriter();
-            out.println(LoginController.login(req));
+            out.println(PInviteController.invite(req));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }

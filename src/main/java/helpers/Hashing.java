@@ -6,10 +6,13 @@ import java.security.NoSuchAlgorithmException;
 
 public class Hashing {
 
+    private Hashing() {
+    }
+
     public static String getHash(String message) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] encodedhash = digest.digest(message.getBytes(StandardCharsets.UTF_8));
+            byte[] encodedhash = digest.digest((message + "usr").getBytes(StandardCharsets.UTF_8));
             return byteToHex(encodedhash);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();

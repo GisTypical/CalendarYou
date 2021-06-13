@@ -7,10 +7,14 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 public class PropertiesReader {
-    private String filePath = new File("src/app.properties").getAbsolutePath();
+
+    private static String filePath = new File("src/app.properties").getAbsolutePath();
     private static final Logger LOGGER = Logger.getLogger("Log");
 
-    public String readValue(String value) throws IOException {
+    private PropertiesReader() {
+    }
+
+    public static String readValue(String value) throws IOException {
         Properties props = new Properties();
         try (FileInputStream stream = new FileInputStream(filePath)) {
             props.load(stream);

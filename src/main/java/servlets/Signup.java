@@ -1,9 +1,6 @@
 package servlets;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -18,7 +15,10 @@ import controllers.SignupController;
  * Servlet implementation class Registro
  */
 
-@MultipartConfig()
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+        maxFileSize = 1024 * 1024 * 10, // 10 MB
+        maxRequestSize = 1024 * 1024 * 100 // 100 MB
+)
 @WebServlet("/signup")
 public class Signup extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -30,15 +30,10 @@ public class Signup extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
-        Enumeration<String> enumeration = req.getParameterNames();
-        ArrayList<String> values = new ArrayList<>();
-        while (enumeration.hasMoreElements()) {
-            values.add(req.getParameter(enumeration.nextElement()));
-        }
         resp.setContentType("application/json");
         try {
             PrintWriter out = resp.getWriter();
-            out.println(SignupController.signUp(values));
+            out.println(SignupController.signUp(req, resp));
         } catch (Exception e) {
             e.printStackTrace();
         }

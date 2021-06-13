@@ -11,11 +11,10 @@ import java.util.List;
 public class DB {
     private static DB instanceDB;
     private Connection connection;
-    private static PropertiesReader pReader = new PropertiesReader();
 
     private DB() throws SQLException {
         try {
-            String url = pReader.readValue("JDBC_DATABASE_URL");
+            String url = PropertiesReader.readValue("JDBC_DATABASE_URL");
             this.connection = DriverManager.getConnection(url);
         } catch (IOException e) {
             e.printStackTrace();
