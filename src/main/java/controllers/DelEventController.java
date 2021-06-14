@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import helpers.DB;
 import helpers.PropertiesReader;
-import helpers.ValuesArray;
 
 public class DelEventController {
 
