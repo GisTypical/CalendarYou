@@ -1,5 +1,6 @@
 # React ignore
 /web/node_modules/
+/node_modules/
 /web/build/
 
 # Maven ignore
