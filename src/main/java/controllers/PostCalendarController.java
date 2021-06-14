@@ -9,14 +9,16 @@ import helpers.DB;
 import helpers.PropertiesReader;
 import helpers.ValuesArray;
 
-public class PCalendarController {
+public class PostCalendarController {
+
+    private static DB db = DB.getInstance();
 
     public static String create(HttpServletRequest req) {
         ArrayList<String> values = ValuesArray.getArrayList(req);
         UUID uuid = UUID.randomUUID();
         values.add(0, uuid.toString());
         try {
-            DB.getInstance().preparedStatement(PropertiesReader.readValue("CALENDAR_PQ"), values);
+            db.preparedStatement(PropertiesReader.readValue("CALENDAR_PQ"), values);
         } catch (Exception e) {
             e.printStackTrace();
             if (e.getMessage().contains("Already exists")) {

@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controllers.DelCalendarController;
 import controllers.GCalendarController;
-import controllers.PCalendarController;
+import controllers.PostCalendarController;
+import controllers.PutCalendarController;
 
 @MultipartConfig()
 @WebServlet("/calendar")
@@ -33,9 +35,20 @@ public class Calendar extends HttpServlet {
         resp.setContentType("application/json");
         try {
             PrintWriter out = resp.getWriter();
-            out.println(PCalendarController.create(req));
+            out.println(PostCalendarController.create(req));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        DelCalendarController.delete(req, resp);
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PutCalendarController.update(req, resp);
+    }
+
 }

@@ -10,17 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import helpers.DB;
 import helpers.PropertiesReader;
 
-public class GEventController {
+public class GetInviteController {
 
     private static DB db = DB.getInstance();
 
     public static String get(HttpServletRequest req) {
-        ArrayList<String> calendarID = new ArrayList<>();
-        calendarID.add(req.getParameter("calendarid"));
+        ArrayList<String> calendarid = new ArrayList<>();
+        calendarid.add(req.getParameter("calendarid"));
         ArrayList<String> table = new ArrayList<>();
-        StringBuilder json = new StringBuilder("{\"events\":[");
+        System.out.println();
+        StringBuilder json = new StringBuilder("{\"invites\":[");
         try {
-            ResultSet rs = db.preparedStatement(PropertiesReader.readValue("EVENT_GQ"), calendarID);
+            ResultSet rs = db.preparedStatement(PropertiesReader.readValue("INVITE_GQ"), calendarid);
             while (rs.next()) {
                 ArrayList<String> rowValues = new ArrayList<>();
                 for (int j = 1; j <= rs.getMetaData().getColumnCount(); j++) {
@@ -31,6 +32,7 @@ public class GEventController {
             json.append(String.join(",", table));
         } catch (SQLException | IOException e) {
             e.printStackTrace();
+            return "\"message\":\"Internal Server Error\"";
         }
         return json.toString() + "]}";
     }

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.SignupController;
+import controllers.PostSignupController;
 
 /**
  * Servlet implementation class Registro
@@ -33,7 +33,7 @@ public class Signup extends HttpServlet {
         resp.setContentType("application/json");
         try {
             PrintWriter out = resp.getWriter();
-            out.println(SignupController.signUp(req, resp));
+            out.println(PostSignupController.signUp(req, resp));
         } catch (Exception e) {
             e.printStackTrace();
         }

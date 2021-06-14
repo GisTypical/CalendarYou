@@ -6,12 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import helpers.Authentication;
+import helpers.DB;
 import helpers.Hashing;
 import helpers.ValuesArray;
 
-public class LoginController {
+public class PostLoginController {
 
-    private LoginController() {
+    private PostLoginController() {
     }
 
     public static String login(HttpServletRequest req) {

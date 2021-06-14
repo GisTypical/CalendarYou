@@ -13,9 +13,11 @@ import helpers.ImageStorage;
 import helpers.PropertiesReader;
 import helpers.ValuesArray;
 
-public class PEventController {
+public class PostEventController {
 
-    private PEventController() {
+    private static DB db = DB.getInstance();
+
+    private PostEventController() {
     }
 
     public static String create(HttpServletRequest req) throws IOException, ServletException {
@@ -25,11 +27,12 @@ public class PEventController {
         String path = req.getServletContext().getRealPath("");
         values.add(ImageStorage.store(req.getPart("img_path"), path));
         try {
-            DB.getInstance().preparedStatement(PropertiesReader.readValue("EVENT_PQ"), values);
+            db.preparedStatement(PropertiesReader.readValue("EVENT_PQ"), values);
         } catch (IOException | SQLException e) {
             e.printStackTrace();
-            if (e.getMessage().contains("Already exists")) {
-                return "{\"status\": \"409 Conflict\"}";
+            if (e.getMessage().contains("is not present")) {
+                System.out.println(e.getMessage());
+                return "{\"status\": \"409 Conflict\", \"message\":\"Calendar does not exists\"}";
             }
             return "{\"status\": \"500 Server error\"}";
         }

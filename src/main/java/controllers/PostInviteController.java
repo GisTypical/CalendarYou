@@ -10,19 +10,21 @@ import helpers.DB;
 import helpers.PropertiesReader;
 import helpers.ValuesArray;
 
-public class PInviteController {
+public class PostInviteController {
 
-    private PInviteController() {
+    private static DB db = DB.getInstance();
+
+    private PostInviteController() {
     }
 
     public static String invite(HttpServletRequest req) {
         ArrayList<String> values = ValuesArray.getArrayList(req);
         try {
-            DB.getInstance().preparedStatement(PropertiesReader.readValue("INVITE_PQ"), values);
+            db.preparedStatement(PropertiesReader.readValue("INVITE_PQ"), values);
         } catch (IOException | SQLException e) {
             e.printStackTrace();
             if (e.getMessage().contains("Already exists")) {
-                return "{\"status\": \"409 Conflict\", \"message\":\"Alredy invited\"}";
+                return "{\"status\": \"409 Conflict\", \"message\":\"Already invited\"}";
             }
             if (e.getMessage().contains("is not present")) {
                 return "{\"status\": \"409 Conflict\", \"message\":\"User does not exists\"}";

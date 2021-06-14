@@ -14,9 +14,11 @@ import helpers.ImageStorage;
 import helpers.PropertiesReader;
 import helpers.ValuesArray;
 
-public class SignupController {
+public class PostSignupController {
 
-    private SignupController() {
+    private static DB db = DB.getInstance();
+
+    private PostSignupController() {
     }
 
     public static String signUp(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -25,7 +27,7 @@ public class SignupController {
         String path = req.getServletContext().getRealPath("");
         values.add(ImageStorage.store(req.getPart("img_path"), path));
         try {
-            DB.getInstance().preparedStatement(PropertiesReader.readValue("SIGNUP_QUERY"), values);
+            db.preparedStatement(PropertiesReader.readValue("SIGNUP_QUERY"), values);
         } catch (SQLException e) {
             e.printStackTrace();
             if (e.getMessage().contains("Already exists")) {
@@ -35,7 +37,7 @@ public class SignupController {
             resp.setStatus(500);
             return "{\"message\": \"Server error\"}";
         }
-        resp.setStatus(200);
+        resp.setStatus(201);
         return "{\"message\": \"Signup successfull\"}";
     }
 }

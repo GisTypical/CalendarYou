@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.LoginController;
+import controllers.PostLoginController;
 
 @MultipartConfig()
 @WebServlet("/login")
@@ -20,7 +20,7 @@ public class Login extends HttpServlet {
         resp.setContentType("application/json");
         try {
             PrintWriter out = resp.getWriter();
-            out.println(LoginController.login(req));
+            out.println(PostLoginController.login(req));
         } catch (Exception e) {
             e.printStackTrace();
         }
