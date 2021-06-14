@@ -5,3 +5,6 @@
 # Maven ignore
 /target/
 pom.xml.tag
+
+/.vscode/
+/.settings/
