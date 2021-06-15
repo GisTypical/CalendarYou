@@ -24,20 +24,15 @@ public class PostSignupController {
     public static String signUp(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         ArrayList<String> values = ValuesArray.getArrayList(req);
         values.set(values.size() - 1, Hashing.getHash(values.get(values.size() - 1)));
-        String path = req.getServletContext().getRealPath("");
-        values.add(ImageStorage.store(req.getPart("img_path"), path));
         try {
             db.preparedStatement(PropertiesReader.readValue("SIGNUP_QUERY"), values);
         } catch (SQLException e) {
             e.printStackTrace();
             if (e.getMessage().contains("Already exists")) {
-                resp.setStatus(409);
-                return "{\"message\": \"Username already exists\"}";
+                return "{\"status\": \"409 Conflict\"}";
             }
-            resp.setStatus(500);
-            return "{\"message\": \"Server error\"}";
+            return "{\"status\": \"500 Internal Server Erro\"}";
         }
-        resp.setStatus(201);
-        return "{\"message\": \"Signup successfull\"}";
+        return "{\"status\": \"200 OK\"}";
     }
 }
