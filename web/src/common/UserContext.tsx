@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 export interface Message {
-  username: String | null;
+  username: string | null;
   setUsername: any;
 }
 

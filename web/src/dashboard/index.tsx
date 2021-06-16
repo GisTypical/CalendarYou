@@ -11,7 +11,7 @@ const Index = () => {
       <DashNavBar username={username}></DashNavBar>
       <div className="flex">
         <SideBar></SideBar>
-        <Calendar></Calendar>
+        <Calendar username={username}></Calendar>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import Button from "../common/Button";
 import Logo from "../common/Logo";
 import { monthNames as MONTH_NAMES } from "../common/Month";
 interface Props {
-  username: String | null;
+  username: string | null;
 }
 
 const DashNavBar: React.FC<Props> = ({ username }) => {
