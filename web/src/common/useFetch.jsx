@@ -1,36 +1,16 @@
 import { useState } from "react";
 
-interface FetchReq {
-  url: string;
-  method: string;
-  formData: FormData;
-}
-
-interface Response {
-  status?: string;
-  message?: string;
-  calendars?: any;
-  color?: string;
-}
-
-interface Calendar {
-  calendarid: string;
-  c_name: string;
-  description: string;
-  color: string;
-}
-
-const useFetch = (props: FetchReq) => {
-  const [response, setResponse] = useState<Response>({
+const useFetch = () => {
+  const [response, setResponse] = useState({
     status: "",
     message: "",
     calendars: [{ calendarid: "", c_name: "", description: "", color: "" }],
     color: "",
   });
-  const [loading, setLoading] = useState(false);
 
+  const [loading, setLoading] = useState(false);
   const doFetch = () => {
-    var a: any = {
+    var a = {
       calendars: [
         {
           calendarid: "Calendario",
@@ -66,8 +46,6 @@ const useFetch = (props: FetchReq) => {
     //     setResponse({ status: "500 Internal Server Error" });
     //   });
   };
-
   return { response, loading, doFetch };
 };
-
 export default useFetch;

@@ -3,20 +3,17 @@ import { useHistory } from "react-router-dom";
 import useFetch from "../common/useFetch";
 import useForm from "../common/useForm";
 import UserContext from "../common/UserContext";
-
 const Inputs = () => {
   const history = useHistory();
   const url = process.env.REACT_APP_FETCH_URL + "/login";
   const { setUsername } = useContext(UserContext);
   const formData = new FormData();
-
   const [user, handleChange] = useForm({ username: "", password: "" });
   const { response, loading, doFetch } = useFetch({
     url: url,
     method: "POST",
     formData: formData,
   });
-
   const isResponse = () => {
     if (!loading && response.status === "401 Unauthorized") {
       return (
@@ -31,7 +28,6 @@ const Inputs = () => {
       history.push("/dashboard");
     }
   };
-
   return (
     <div className="grid gap-6">
       <input
@@ -65,5 +61,4 @@ const Inputs = () => {
     </div>
   );
 };
-
 export default Inputs;
