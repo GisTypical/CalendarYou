@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../common/UserContext";
+import Calendar from "./Calendar";
 import DashNavBar from "./DashNavBar";
+import SideBar from "./SideBar";
 
-const index = () => {
+const Index = () => {
+  const { username } = useContext(UserContext);
   return (
-    <div>
-      <DashNavBar></DashNavBar>
+    <div className="place-items-stretch">
+      <DashNavBar username={username}></DashNavBar>
+      <div className="flex">
+        <SideBar></SideBar>
+        <Calendar></Calendar>
+      </div>
     </div>
   );
 };
 
-export default index;
+export default Index;

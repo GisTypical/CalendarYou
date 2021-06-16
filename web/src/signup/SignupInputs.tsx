@@ -14,13 +14,6 @@ const Inputs = () => {
     passverif: "",
   });
 
-  useEffect(() => {
-    setPassEqual(
-      values.password === values.passverif ||
-        (values.passverif === "" && values.password === "")
-    );
-  }, [values.password, values.passverif]);
-
   const url = process.env.REACT_APP_FETCH_URL + "/signup";
   const formData = new FormData();
   const { response, loading, doFetch } = useFetch({
@@ -28,6 +21,13 @@ const Inputs = () => {
     method: "POST",
     formData: formData,
   });
+
+  useEffect(() => {
+    setPassEqual(
+      values.password === values.passverif ||
+        (values.passverif === "" && values.password === "")
+    );
+  }, [values.password, values.passverif]);
 
   const isResponse = () => {
     if (!loading && response.status === "409 Conflict") {

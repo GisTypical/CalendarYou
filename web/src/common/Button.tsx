@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
 interface Props {
-  text: string
+  text: string;
 }
 
 const Button: React.FC<Props> = ({ text }) => {
@@ -11,7 +11,7 @@ const Button: React.FC<Props> = ({ text }) => {
         {text}
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

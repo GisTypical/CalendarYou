@@ -10,8 +10,12 @@ const Title = () => {
         <h3>Planifica</h3>
         <h3>Crea</h3>
       </div>
-      <h4 className="font-bold text-lg my-5">
-        El calendario que siempre has esperado ⚡
+      <h4 className="font-regular text-lg my-5">
+        Un calendario pensado{" "}
+        <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-yellow-500">
+          para ti
+        </span>{" "}
+        💡
       </h4>
       <Link to="/signup/new">
         <Button text="¡Comenzar ahora!"></Button>
