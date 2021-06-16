@@ -10,12 +10,6 @@ const SideBar = ({ username }) => {
     formData: formData,
   });
 
-  const { response2, doFetch2 } = useFetch({
-    url: url,
-    method: "POST",
-    formData: formData,
-  });
-
   useEffect(() => {
     formData.append("username", username);
     doFetch();
