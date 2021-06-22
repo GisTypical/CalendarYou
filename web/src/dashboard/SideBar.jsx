@@ -1,44 +1,32 @@
-import React, { useEffect } from "react";
-import useFetch from "../common/useFetch";
+import React from "react";
 
-const SideBar = ({ username }) => {
-  let formData = new FormData();
-  const url = process.env.REACT_APP_FETCH_URL + "/calendar";
-  const { response, doFetch } = useFetch({
-    url: url,
-    method: "GET",
-    formData: formData,
-  });
-
-  useEffect(() => {
-    formData.append("username", username);
-    doFetch();
-    console.log(response.calendars);
-  }, []);
-
+const SideBar = ({ calendars }) => {
   return (
-    <div className="col-span-2 grid grid-rows-4 place-items-center bg-gunmetal bg-opacity-75 h-screen w-1/4 p-12">
-      <button
-        type="button"
-        className="font-bold rounded-xl py-2 px-4 text-background bg-gradient-to-r from-pink-400 to-yellow-500"
-      >
-        Crear un evento
-      </button>
-      <button
-        type="button"
-        className="font-bold rounded-xl py-2 px-4 text-background bg-gradient-to-r from-pink-400 to-yellow-500"
-      >
-        Crear calendario
-      </button>
-      <div className="bg-charcoal px-10 py-5 rounded-2xl">
-        <h3 className="font-heading text-lg">Calendarios</h3>
-        <ul className="m-6">
-          {response.calendars.map((cal) => (
-            <li key={cal.calendarid}>{cal.c_name}</li>
-          ))}
-        </ul>
-        <div></div>
-      </div>
+    <div className="flex-shrink-0 py-16 w-1/5 h-full bg-gunmetal bg-opacity-75">
+      <aside className="flex flex-col place-items-center space-y-16">
+        <button
+          type="button"
+          className="font-bold rounded-xl w-4/5 py-2 text-background bg-gradient-to-r from-pink-400 to-yellow-500"
+        >
+          Crear un evento
+        </button>
+        <div className="flex flex-col break-words w-full place-items-center row-span-2 space-y-5">
+          <button
+            type="button"
+            className="font-bold rounded-xl w-4/5 py-2 text-background bg-gradient-to-r from-pink-400 to-yellow-500"
+          >
+            Crear calendario
+          </button>
+          <div className="bg-charcoal py-5 px-2 w-4/5 rounded-2xl text-center">
+            <h3 className="font-heading text-lg">Calendarios</h3>
+            {calendars ? (
+              calendars.map((cal, i) => <div key={i}>{cal.c_name}</div>)
+            ) : (
+              <div>No hay calendarios creados</div>
+            )}
+          </div>
+        </div>
+      </aside>
     </div>
   );
 };

@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../common/Button";
 const Title = () => {
-    return (<div className="bg-transparent grid place-items-center text-center">
+  return (
+    <div className="bg-transparent grid place-items-center text-center">
       <div className="text-5xl mt-20 flex flex-col items-center font-bold font-heading space-y-4">
         <h3>Diseña</h3>
         <h3>Planifica</h3>
@@ -18,6 +19,7 @@ const Title = () => {
       <Link to="/signup/new">
         <Button text="¡Comenzar ahora!"></Button>
       </Link>
-    </div>);
+    </div>
+  );
 };
 export default Title;

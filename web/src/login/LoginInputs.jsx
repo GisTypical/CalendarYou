@@ -9,11 +9,13 @@ const Inputs = () => {
   const { setUsername } = useContext(UserContext);
   const formData = new FormData();
   const [user, handleChange] = useForm({ username: "", password: "" });
+
   const { response, loading, doFetch } = useFetch({
     url: url,
     method: "POST",
     formData: formData,
   });
+
   const isResponse = () => {
     if (!loading && response.status === "401 Unauthorized") {
       return (

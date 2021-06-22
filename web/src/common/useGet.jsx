@@ -6,15 +6,30 @@ const useFetch = (props) => {
     message: "",
     username: "",
     calendars: [{ calendarid: "", c_name: "", description: "", color: "" }],
+    events: [],
   });
 
   const [loading, setLoading] = useState(false);
-  const doFetch = () => {
+  const doGet = () => {
+    setResponse({
+      events: [
+        {
+          eventid: "403541",
+          calendarid: "453151",
+          event_name: "Evento",
+          description: "sadfasd",
+          start_time: "1:30",
+          end_time: "2:30",
+          date: "2021/01/15",
+          img_path: "",
+        },
+      ],
+    });
+    return;
     setResponse({ status: "" });
     setLoading(true);
     const options = {
-      method: props.method,
-      body: props.formData,
+      method: "GET",
     };
     fetch(props.url, options)
       .then((resp) => {
@@ -29,6 +44,6 @@ const useFetch = (props) => {
         setResponse({ status: "500 Internal Server Error" });
       });
   };
-  return { response, loading, doFetch };
+  return { response, loading, doGet };
 };
 export default useFetch;

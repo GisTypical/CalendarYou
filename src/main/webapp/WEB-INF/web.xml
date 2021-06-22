@@ -24,9 +24,45 @@
   <!-- General description of your web application -->
   <display-name>CalendarYou</display-name>
   <servlet>
-    <servlet-name>Registro</servlet-name>
-    <display-name>Registro</display-name>
+    <servlet-name>Signup</servlet-name>
+    <display-name>Signup</display-name>
     <description></description>
-    <servlet-class>servlets.Registro</servlet-class>
+    <servlet-class>servlets.Signup</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Calendar</servlet-name>
+    <display-name>Calendar</display-name>
+    <description></description>
+    <servlet-class>servlets.Calendar</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Event</servlet-name>
+    <display-name>Event</display-name>
+    <description></description>
+    <servlet-class>servlets.Event</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Invite</servlet-name>
+    <display-name>Invite</display-name>
+    <description></description>
+    <servlet-class>servlets.Invite</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <display-name>Login</display-name>
+    <description></description>
+    <servlet-class>servlets.Login</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Profile</servlet-name>
+    <display-name>Profile</display-name>
+    <description></description>
+    <servlet-class>servlets.Profile</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Security</servlet-name>
+    <display-name>Security</display-name>
+    <description></description>
+    <servlet-class>servlets.Security</servlet-class>
   </servlet>
 </web-app>
