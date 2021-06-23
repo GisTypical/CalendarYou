@@ -5,11 +5,11 @@ import useForm from "../common/useForm";
 import UserContext from "../common/UserContext";
 const Inputs = () => {
   const history = useHistory();
-  const url = process.env.REACT_APP_FETCH_URL + "/login";
   const { setUsername } = useContext(UserContext);
-  const formData = new FormData();
   const [user, handleChange] = useForm({ username: "", password: "" });
 
+  const formData = new FormData();
+  const url = process.env.REACT_APP_FETCH_URL + "/login";
   const { response, loading, doFetch } = useFetch({
     url: url,
     method: "POST",

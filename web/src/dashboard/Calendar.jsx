@@ -40,7 +40,7 @@ const WeekTime = () => {
   hour.setHours(0);
   hour.setMinutes(0);
   let blocks = [];
-  for (let i = 0; i < 24; i++) {
+  for (let i = 0; i < 47; i++) {
     hour.setTime(hour.getTime() + 30 * 60000);
     for (let j = 0; j < 7; j++) {
       blocks.push(
@@ -58,7 +58,6 @@ const parseEvents = (events) => {
   if (events.length === 0) {
     return;
   }
-  console.log(events[0].start_time);
   let block = document.getElementById(`${events[0].start_time}-2`);
   block.innerHTML = "me has dado?";
 };
@@ -66,18 +65,17 @@ const parseEvents = (events) => {
 const Calendar = ({ calendars }) => {
   const [currDate, setCurrDate] = useState(new Date());
   const [monday, setMonday] = useState(getMonday(currDate.getDate()));
-  const [weekDays, setWeekDays] = useState([]);
 
-  const { response, doGet } = useGet({
-    url: process.env.REACT_APP_FETCH_URL + `/calendar?calendar=${calendars}`,
-  });
+  // const { response, doGet } = useGet({
+  //   url: process.env.REACT_APP_FETCH_URL + `/calendar?calendar=${calendars[0].calendarid}`,
+  // });
 
-  useEffect(() => {
-    setCurrDate(new Date());
-    doGet();
-  }, []);
+  // useEffect(() => {
+  //   setCurrDate(new Date());
+  //   doGet();
+  // }, []);
 
-  parseEvents(response.events);
+  // parseEvents(response.events);
   return (
     <div className="flex flex-col p-2 m-5 mb-20 h-5/6 w-full overflow-auto rounded-2xl bg-gunmetal bg-opacity-75">
       <div className="grid grid-cols-7 auto-rows-fr place-items-center w-full">

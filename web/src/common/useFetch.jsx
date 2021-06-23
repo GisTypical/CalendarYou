@@ -5,6 +5,9 @@ const useFetch = (props) => {
     status: "",
     message: "",
     username: "",
+    c_name: "",
+    color: "",
+    description: "",
     calendars: [{ calendarid: "", c_name: "", description: "", color: "" }],
   });
 

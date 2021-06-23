@@ -14,14 +14,13 @@ const Index = () => {
 
   useEffect(() => {
     doGet();
-    console.log(response.calendars);
   }, []);
 
   return (
     <div className="h-full flex flex-col overflow-hidden">
       <DashNavBar username={username}></DashNavBar>
       <div className="flex h-full">
-        <SideBar calendars={response.calendars}></SideBar>
+        <SideBar calendars={response.calendars} username={username}></SideBar>
         <Calendar calendars={response.calendars}></Calendar>
       </div>
     </div>
